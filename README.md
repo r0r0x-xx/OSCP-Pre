@@ -1,13 +1,13 @@
 ## OSCP Buffer Overflow Cheat Sheet
-In this cheat sheet we will use dostackbufferoverflowgod as a vulnerable application in our exploration process (more info here: https://github.com/justinsteven/dostackbufferoverflowgood).
+In this cheat sheet we will use dostackbufferoverflowgod as a vulnerable application in our exploration process (more info here: 
 
-The binary can be downloaded here: https://github.com/justinsteven/dostackbufferoverflowgood/blob/master/dostackbufferoverflowgood.exe
+The binary can be downloaded here: 
 
 Below are the download links for all the tools needed for the study:
 
-Windows 7 Evaluation: https://gist.github.com/anonymous/c644cac9d77e2793742c13cf10d26cb8 (you can run on Windows 10 too)
-Immunity Debugger: https://www.immunityinc.com/products/debugger/
-Mona.py: https://github.com/corelan/mona
+Windows 7 Evaluation:  (you can run on Windows 10 too)
+Immunity Debugger: 
+Mona.py: 
 All installation processes are described in the links above.
 
 Fuzzing
