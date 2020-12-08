@@ -1,18 +1,7 @@
 #!/usr/bin/env python
 #-------------------------------------------------------------------------------------------------------------#
 # Software      = ASX to MP3 Converter Version 3.0.0.100                                                      #
-# Download Link = https://www.exploit-db.com/apps/b31a84e79d9941d89336b6708ef52a20-ASXtoMP3Converter_3121.exe #
-# Date          = 10/11/2017                                                                                  #
-# Reference     = https://www.exploit-db.com/exploits/11930/                                                  #
-# Author        = @ihack4falafel                                                                              #
-# Tested on     = Windows XP SP3      - Professional                                                          #
-#                 Windows 7  SP1      - Enterprise                                                            #
-#                 Windows 8.1         - Enterprise                                                            #
-#                 Windows 10 (64-bit) - Enterprise                                                            #                                                                                       #
-# EIP Offset    = 17417                                                                                       #
-# Badchars      = "\x00\x09\x0a"                                                                              #
-# RET Address   = 0x1005dacf | "\xFF\xE4" | [MSA2Mfilter03.dll]                                               #
-# Usage         = ASX to MP3 Converter > load > Evil_Payload.asx                                              #        
+# Reference     = https://www.exploit-db.com/exploits/11930/                                                  #       
 #-------------------------------------------------------------------------------------------------------------#
 
 import struct
