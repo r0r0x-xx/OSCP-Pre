@@ -1,15 +1,7 @@
 #!/usr/bin/env python
 #---------------------------------------------------------------------------------------------#
 # Software      = PCMan FTP Server 2.0.7 - 'USER'                                             #
-# Download Link = https://www.exploit-db.com/apps/9fceb6fefd0f3ca1a8c36e97b6cc925d-PCMan.7z   #
-# Date          = 9/12/2017                                                                   #
-# Reference     = https://www.exploit-db.com/exploits/26471/                                  #
-# Author        = @ihack4falafel                                                              #
-# Tested on     = Windows XP SP3 - Professional                                               #
-# EIP Offset    = 2000                                                                        #
-# Badchars      = "\x00\x0A\x0D"                                                              #
-# RET Address   = 0x7e429353 : "\xFF\xE4" | [USER32.dll]                                      #
-# Usage         = python exploit.py <target IP>                                               #        
+# Reference     = https://www.exploit-db.com/exploits/26471/                                  #     
 #---------------------------------------------------------------------------------------------#
 
 import sys
