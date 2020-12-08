@@ -1,19 +1,6 @@
 #!/usr/bin/env python
 #---------------------------------------------------------------------------------------------#
 # Software      = Freefloat FTP server version 1.0                                            #
-# Download Link = http://www.mediafire.com/file/9cds1786340avnn/Freefloat+FTP+Server+v1.0.rar #
-# Date          = 8/20/2017                                                                   #
-# Reference     = https://packetstormsecurity.com/files/103746/freefloatftp-overflow.txt      #
-# Author        = @ihack4falafel                                                              #
-# Tested on     = Windows XP SP3 - Professional                                               #
-# EIP Offset    = 246                                                                         #
-# Badchars      = "\x00\x0A\x0D"                                                              #
-# RET Address   = 7E429353 "\xFF\xE4" | [USER32.dll]                                          #
-# Usage         = python exploit.py <target IP>                                               #        
-#---------------------------------------------------------------------------------------------#
-
-#---------------------------------------------------------------------------------------------#
-# List of Vuln. Commands  = [DELE, MDTM, RETR, RMD, RNFR, RNTO, STOU, STOR, SIZE, APPE, STAT] #
 #---------------------------------------------------------------------------------------------#
 
 import sys
