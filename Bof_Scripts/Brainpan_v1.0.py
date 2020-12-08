@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 #---------------------------------------------------------------------------------------------#
 # Software      = Brainpan.exe version 1.0                                                    #
-# Download Link = https://www.vulnhub.com/entry/brainpan-1,51/#                               #
-# Date          = 8/31/2017                                                                   #
-# Author        = @ihack4falafel                                                              #
-# Tested on     = Windows XP SP3 - Professional | Ubuntu 12.10 (Quantal Quetzal)              #
-# EIP Offset    = 524                                                                         #
-# Badchars      = "\x00"                                                                      #
-# RET Address   = 311712F3 "\xFF\xE4" | [brainpan.exe]                                        #
-# Usage         = python exploit.py <target IP> <platform>                                    #        
+# Download Link = https://www.vulnhub.com/entry/brainpan-1,51/#                               #      
 #---------------------------------------------------------------------------------------------#
 
 import sys
