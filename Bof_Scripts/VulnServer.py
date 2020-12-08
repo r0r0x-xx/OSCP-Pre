@@ -1,14 +1,7 @@
 #!/usr/bin/python
 #---------------------------------------------------------------------------------------------#
 # Software      = VulnServer                                                                  #
-# Download Link = https://github.com/stephenbradshaw/vulnserver                               #
-# Date          = 9/13/2017                                                                   #
-# Author        = @ihack4falafel                                                              #
-# Tested on     = Windows 7 - Professional N SP1                                              #
-# EIP Offset    = 1040                                                                        #
-# Badchars      = None                                                                        #
-# RET Address   = 0x65d11d71 : "\xFF\xE4" | [VulnServer.exe]                                  #
-# Usage         = python exploit.py <target IP>                                               #        
+# Download Link = https://github.com/stephenbradshaw/vulnserver                               #       
 #---------------------------------------------------------------------------------------------#
 
 import sys
