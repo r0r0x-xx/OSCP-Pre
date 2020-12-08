@@ -2,14 +2,6 @@
 #-----------------------------------------------------------------------------------------------------------#
 # Software      = MiniShare Version 1.4.1                                                                   #
 # Download Link = https://www.exploit-db.com/apps/0ffe5385147edd1f9e7b460c6d7cb0a6-minishare-1.4.1.zip      #
-# Date          = 12/18/2017                                                                                #
-# Reference     = http://www.securityfocus.com/bid/11620/discuss                                            #
-# Author        = @ihack4falafel                                                                            #
-# Tested on     = Windows XP SP3 - Professional                                                             #
-# EIP Offset    = 1787                                                                                      #
-# Badchars      = "\x00\x0d\"                                                                               #
-# RET Address   =  0x7e429353 : "\xFF\xE4" | [USER32.dll]                                                   #
-# Usage         = python exploit.py <target IP>                                                             #
 #-----------------------------------------------------------------------------------------------------------#
 
 import sys
