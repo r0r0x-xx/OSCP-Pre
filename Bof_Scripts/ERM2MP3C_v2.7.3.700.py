@@ -2,14 +2,7 @@
 #-----------------------------------------------------------------------------------------------------------#
 # Software      = Easy RM to MP3 Converter v2.7.3.700                                                       #
 # Download Link = https://www.exploit-db.com/apps/707414955696c57b71c7f160c720bed5-EasyRMtoMP3Converter.exe #
-# Date          = 9/1/2017                                                                                  #
-# Reference     = https://www.exploit-db.com/exploits/10374/                                                #
-# Author        = @ihack4falafel                                                                            #
-# Tested on     = Windows XP SP3 - Professional                                                             #
-# EIP Offset    = 26064                                                                                     #
-# Badchars      = "\x00\x09\x0A"                                                                            #
-# RET Address   = 0x7e429353 | "\xFF\xE4" | [USER32.dll]                                                    #
-# Usage         = Easy RM to MP3 Converter > Load > Evil_File.m3u                                           #        
+# Reference     = https://www.exploit-db.com/exploits/10374/                                                #       
 #-----------------------------------------------------------------------------------------------------------#
 
 import struct
