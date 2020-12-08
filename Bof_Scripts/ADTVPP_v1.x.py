@@ -1,16 +1,4 @@
 #!/usr/bin/env python
-#-----------------------------------------------------------------------------------#
-# Software      = Aviosoft Digital TV Player Professional 1.x                       #
-# Download Link = http://www.aviosoft.com/download.html                             #
-# Date          = 8/19/2017                                                         #
-# Reference     = https://www.exploit-db.com/exploits/22932/                        #
-# Author        = @ihack4falafel                                                    #
-# Tested on     = Windows XP SP3 - Professional | Windows 7 SP1 - Enterprise        #
-# EIP Offset    = 260                                                               #
-# Badchars      = "\x00\x0A\x1A"                                                    #
-# RET Address   = 0x6034c153 | "\xFF\xE4" | [Configuration.dll]                     #
-# Usage         = Aviosoft DVT Player PRO > Open > Open Playlist > Evil_Payload.PLF #        
-#-----------------------------------------------------------------------------------#
 
 import struct
 

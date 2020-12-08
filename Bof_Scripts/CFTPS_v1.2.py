@@ -1,16 +1,7 @@
 #!/usr/bin/env python
 #---------------------------------------------------------------------------------------------#
 # Software      = Core FTP Server version 1.2                                                 #
-# Download Link = http://www.coreftp.com/server/                                              #
-# Date          = 8/21/2017                                                                   #
 # Reference     = https://www.exploit-db.com/exploits/39480/                                  #
-# Author        = @ihack4falafel                                                              #
-# Tested on     = Windows XP SP3 - Professional                                               #
-# EIP Offset    = 312                                                                         #
-# Badchars      = "\x00\x0A\x0D"                                                              #
-# RET Address   = 0x7e429353 : "\xFF\xE4" | [USER32.dll]                                      #
-# Usage         = Insert Evil_Payload.txt content into Logfilename (include path) field under #                     
-#                 Setup> New> Logging Options> More                                           #
 #---------------------------------------------------------------------------------------------#
 
 import struct

