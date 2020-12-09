@@ -10,3 +10,12 @@ Hello world! This repo contain some of the scripts, exploits, and documents made
 - Wordlist
 - Practices
 
+## Documentation
+
+- [Buffer Overflow Windows]
+
+
+- [Pentesting General]
+
+* [Pentesting Web]
+
