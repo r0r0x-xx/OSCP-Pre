@@ -12,10 +12,15 @@ Hello world! This repo contain some of the scripts, exploits, and documents made
 
 ## Documentation
 
-- [Buffer Overflow Windows]
+* [Buffer Overflow Windows]
 
-
-- [Pentesting General]
+* [Pentesting General]
 
 * [Pentesting Web]
+
+* [Pentesting Linux]
+
+* [Pentesting Windows]
+
+* [List Virtual Machines (HTH & Vulnhub)]
 
